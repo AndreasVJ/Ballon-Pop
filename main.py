@@ -44,7 +44,7 @@ class Game:
                         self.balloons.append(generate_random_balloon())
         
         # Check if player clicked on a balloon
-        elif event.type == pygame.MOUSEBUTTONDOWN:
+        elif event.type == pygame.MOUSEBUTTONDOWN and self.time < self.max_time:
             x, y = pygame.mouse.get_pos()
             for i, balloon in enumerate(self.balloons):
                 if balloon.is_inside(x, y):
@@ -68,21 +68,20 @@ class Game:
         # Clear previous frame
         screen.fill((0, 0, 0))
 
+        # Draw balloons
+        for b in self.balloons:
+            b.draw(screen)
+
+        # Draw time and score
+        draw_text(screen, f'time left: {max(0, (self.max_time - self.time) // 1000)}', font32, 16, 16)
+        draw_text(screen, f'score: {self.score}', font32, 16, 48)
+        
         # Check if time is used up
         if self.time > self.max_time:
-            draw_text(screen, "Game Over", font64, 0, 0)
-            draw_text(screen, f'score: {self.score}', font32, 300, 364)
-            draw_text(screen, "Press 'r' to try again", font32, 300, 396)
+            draw_text(screen, "Game Over", font64, WIDTH/2, HEIGHT/2 - 48, centered=True)
+            draw_text(screen, "Press 'R' to try again", font32, WIDTH/2, HEIGHT/2, centered=True)
+            draw_text(screen, f'score: {self.score}', font32, WIDTH/2, HEIGHT/2 + 32, centered=True)
         
-        else:
-            # Draw balloons
-            for b in self.balloons:
-                b.draw(screen)
-
-            # Draw time and score
-            draw_text(screen, f'time left: {(self.max_time - self.time) // 1000}', font32, 16, 16)
-            draw_text(screen, f'score: {self.score}', font32, 16, 48)
-
         pygame.display.flip()
 
 

@@ -30,11 +30,9 @@ class Balloon:
     def draw(self, screen: pygame.Surface):
         pygame.draw.polygon(screen, self.color, self.vertices + [self.pos.x, self.pos.y])
 
-        y = self.pos.y + BALLON_ASPECT_RATIO*circle_arc(0, self.size)
-
-        pygame.draw.polygon(screen, self.color, np.array([[0, -self.size*0.2], [self.size*0.3, self.size*0.3], [-self.size*0.3, self.size*0.3]]) + [self.pos.x, self.pos.y + BALLON_ASPECT_RATIO*circle_arc(0, self.size)])
-
-        # pygame.draw.line(screen, (255, 255, 255), (self.pos.x, self.pos.y + BALLON_ASPECT_RATIO*circle_arc(0, self.size)), (self.pos.x, self.pos.y + BALLON_ASPECT_RATIO*circle_arc(0, self.size) + 30), 3)
+        knot_y = BALLON_ASPECT_RATIO*circle_arc(0, self.size)
+        knot_size = self.size*0.3
+        pygame.draw.polygon(screen, self.color, np.array([[0, -knot_size], [knot_size, knot_size], [-knot_size, knot_size]]) + [self.pos.x, self.pos.y + knot_y])
     
 
     def is_inside(self, x, y) -> bool:
