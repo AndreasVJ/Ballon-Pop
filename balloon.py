@@ -25,7 +25,7 @@ class Balloon:
     
 
 def generateRandomBalloon() -> Balloon:
-     return Balloon((random.randint(0, WIDTH), random.randint(0, HEIGHT)),
+     return Balloon((random.randint(WIDTH*0.1, WIDTH*0.9), random.randint(HEIGHT, HEIGHT*1.2)),
                     (random.randint(-20, 20), random.randint(-160, -80)), 
-                     random.randint(10, 50), 
+                     random.randint(20, 50), 
                     (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)))
