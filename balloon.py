@@ -1,6 +1,7 @@
 import pygame
 import numpy as np
 import random
+from math import cos, pi
 from vec2d import Vec2d
 from globals import WIDTH, HEIGHT, BALLOON_RESOLUTION, BALLON_ASPECT_RATIO
 
@@ -16,10 +17,10 @@ class Balloon:
         self.size = size
         self.color = color
         a = []
-        for x in np.linspace(size, -size, BALLOON_RESOLUTION):
-            a.append([x, -circle_arc(x, size)])
-        for x in np.linspace(-size, size, BALLOON_RESOLUTION):
-            a.append([x, BALLON_ASPECT_RATIO*circle_arc(x, size)])
+        for x in np.linspace(0, pi, BALLOON_RESOLUTION):
+            a.append([cos(x)*size, -circle_arc(cos(x)*size, size)])
+        for x in np.linspace(pi, 0, BALLOON_RESOLUTION):
+            a.append([cos(x)*size, BALLON_ASPECT_RATIO*circle_arc(cos(x)*size, size)])
         self.vertices = np.array(a)
 
     
