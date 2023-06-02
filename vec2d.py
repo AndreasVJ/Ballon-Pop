@@ -11,11 +11,11 @@ class Vec2d:
         return f'x: {self.x}, y: {self.y}'
     
     
-    def __add__(self, V):
+    def __add__(self, V: 'Vec2d'):
         return Vec2d(self.x + V.x, self.y + V.y)
 
 
-    def __sub__(self, V):
+    def __sub__(self, V: 'Vec2d'):
         return Vec2d(self.x - V.x, self.y - V.y)
     
 
