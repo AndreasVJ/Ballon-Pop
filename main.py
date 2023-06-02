@@ -13,6 +13,9 @@ font64 = pygame.font.Font("freesansbold.ttf", 64)
 pygame.display.set_caption("Balloon Pop")
 
 
+background = pygame.image.load("background.png")
+
+
 class Game:
     def __init__(self, screen, game_time, num_balloons):
         self.screen = screen
@@ -67,6 +70,7 @@ class Game:
     def draw(self):
         # Clear previous frame
         screen.fill((0, 0, 0))
+        screen.blit(background, (0, 0))
 
         # Draw balloons
         for b in self.balloons:
